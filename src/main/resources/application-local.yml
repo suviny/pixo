@@ -1,0 +1,53 @@
+# ====================================================================================================
+#   인 메모리 개발 환경 설정
+# ====================================================================================================
+
+spring:
+  config:
+    activate:
+      on-profile: local
+
+  # H2 인 메모리 데이터베이스 구성 설정
+  datasource:
+    url: jdbc:h2:mem:local_db;MODE=MySQL;DB_CLOSE_DELAY=-1
+    username: sa
+    driver-class-name: org.h2.Driver
+
+  sql:
+    init:
+      # 내장 데이터베이스인 경우 SQL 스크립트 실행
+      mode: embedded
+      schema-locations: classpath:sql/h2/schema.sql
+      data-locations: classpath:sql/h2/data.sql
+
+  # H2 웹 콘솔 활성화
+  h2:
+    console:
+      enabled: true
+
+  jackson:
+    deserialization:
+      # 정의되지 않은 필드 유입시 예외 발생 허용
+      fail-on-unknown-properties: true
+
+  # 브라우저의 새로고침을 통해 화면의 변경 내역 반영을 위한 '뷰 템플릿' 및 '정적 리소스' 경로 설정
+  thymeleaf:
+    prefix: file:src/main/resources/templates/
+    cache: false
+
+  web:
+    resources:
+      static-locations: file:src/main/resources/static/
+
+
+server:
+  port: 8080
+
+
+logging:
+  level:
+    root: info
+    org.siwon.pixo: debug
+  file:
+    path: F:/dev/works/projects/pixo/logs
+

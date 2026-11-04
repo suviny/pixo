@@ -1,0 +1,38 @@
+# ====================================================================================================
+#   운영 개발 환경 설정
+# ====================================================================================================
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  # 운영 데이터베이스 구성 설정
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.mariadb.jdbc.Driver
+
+  jackson:
+    deserialization:
+      # 정의되지 않은 필드 유입시 예외 발생 방지
+      fail-on-unknown-properties: false
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    cache: true
+
+  web:
+    resources:
+      # 캐시 활성화
+      cache:
+        period: 36000
+
+
+logging:
+  level:
+    root: ${LOG_LEVEL_ROOT}
+    org.siwon.pixo: ${LOG_LEVEL_APP}
+  file:
+    path: ${LOG_PATH}
