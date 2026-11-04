@@ -1,0 +1,48 @@
+# ====================================================================================================
+#   공통 애플리케이션 설정
+# ====================================================================================================
+
+spring:
+  application:
+    name: pixo
+
+  main:
+    # 애플리케이션 구동 시 스프링 로고 배너 출력 비활성화
+    banner-mode: off
+
+  profiles:
+    # 현재 활성화할 프로파일 지정
+    active: local
+
+  config:
+    # 활성화된 프로파일에 따른 외부 환경 변수 파일 로드
+    import: optional:file:.env.${spring.profiles.active}[.properties]
+
+  jackson:
+    # JSON 직렬화 및 역직렬화 시 기준이 될 타임존 설정
+    time-zone: Asia/Seoul
+
+
+mybatis:
+  config-location: classpath:sql/mybatis/mybatis-config.xml
+  # 마이바티스 커스텀 타입 핸들러가 위치한 패키지 경로 지정
+  type-handlers-package: org.siwon.pixo.global.infra.handler
+  # 마이바티스 매퍼 처리시 매핑 타입으로 사용될 도메인 클래스들의 펴키지 경로 지정
+  type-aliases-package: org.siwon.pixo.domain.**
+  # 마이바티스 매퍼 파일들의 경로 지정
+  mapper-locations: classpath:sql/mybatis/mappers/*_mapper.xml
+
+
+server:
+  servlet:
+    # HTTP 요청 및 응답에 대한 UTF-8 문자 인코딩 강제 적용
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+
+# API 경로 및 커스텀 설정
+api:
+  base-path: /api
+  version: v1

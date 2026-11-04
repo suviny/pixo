@@ -1,0 +1,40 @@
+# ====================================================================================================
+#   로컬 개발 환경 설정
+# ====================================================================================================
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+  # 로컬 PC 데이터베이스 구성 설정
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.mariadb.jdbc.Driver
+
+  jackson:
+    deserialization:
+      # 정의되지 않은 필드 유입시 예외 발생 허용
+      fail-on-unknown-properties: true
+
+  thymeleaf:
+    prefix: file:src/main/resources/templates/
+    cache: false
+
+  web:
+    resources:
+      static-locations: file:src/main/resources/static/
+
+
+server:
+  port: 8181
+
+
+logging:
+  level:
+    root: ${LOG_LEVEL_ROOT}
+    org.siwon.pixo: ${LOG_LEVEL_APP}
+  file:
+    path: ${LOG_PATH}

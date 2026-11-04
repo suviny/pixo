@@ -26,6 +26,15 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
+### Project Specific Ignored Filed ###
+# Application Logs
+logs/
+*.log
+
+# Environment Variables (Secrets)
+.env
+.env.*
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
