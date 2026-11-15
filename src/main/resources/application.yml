@@ -26,7 +26,7 @@ spring:
 mybatis:
   config-location: classpath:sql/mybatis/mybatis-config.xml
   # 마이바티스 커스텀 타입 핸들러가 위치한 패키지 경로 지정
-  type-handlers-package: org.siwon.pixo.global.infra.handler
+  type-handlers-package: org.siwon.pixo.global.infra.mybatis.handler
   # 마이바티스 매퍼 처리시 매핑 타입으로 사용될 도메인 클래스들의 펴키지 경로 지정
   type-aliases-package: org.siwon.pixo.domain.**
   # 마이바티스 매퍼 파일들의 경로 지정

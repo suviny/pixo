@@ -57,7 +57,8 @@ CREATE TABLE IF NOT EXISTS USER_OAUTH (
     provider_id         VARCHAR(255)            NOT NULL,                   -- 인증 서비스 제공자의 고유 식별자
     created_at          DATETIME                NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 생성 일시
     PRIMARY KEY (id),
-    CONSTRAINT FK_USER_OAUTH FOREIGN KEY (user_id) REFERENCES USERS (id)
+    CONSTRAINT FK_USER_OAUTH FOREIGN KEY (user_id) REFERENCES USERS (id),
+    CONSTRAINT UK_USER_OAUTH_PROVIDER UNIQUE KEY (provider, provider_id)    -- 동일 소셜 계정 중복 등록 방지
 );
 
 
